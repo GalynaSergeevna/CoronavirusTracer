@@ -1,0 +1,21 @@
+stages:
+  - build
+  - test
+  - deploy
+
+Docker build:
+  stage: build
+  script:
+    - docker build . -t name-tag
+    - docker login
+    - ;docker
+
+Unit tests:
+  stage: test
+  script:
+    - echo 'this is unit test'
+
+Deploy:
+  stage: deploy
+  script:
+    - echo 'build is good'
