@@ -35,10 +35,12 @@ RUN apk add --no-cache shadow sudo tzdata \
 FROM openjdk:11-jdk as builder
 USER root
 WORKDIR /home/corona/coronavirus-tracker
-COPY coronavirus-tracker/mvnw mvnw
+#COPY coronavirus-tracker/mvnw mvnw
+COPY --chmod=+x coronavirus-tracker/mvnw mvnw
 COPY coronavirus-tracker/.mvn .mvn
 COPY coronavirus-tracker/pom.xml pom.xml
 COPY coronavirus-tracker/src src
+#RUN chmod +x ./mvnw package
 RUN ./mvnw package
 ARG JAR_FILE=/home/corona/coronavirus-tracker/target/*.jar
 RUN java -Djarmode=layertools -jar ${JAR_FILE} extract
