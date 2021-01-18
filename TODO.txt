@@ -1,0 +1,20 @@
+# @TODO: Create GitLab CI pipeline (checkout, get current git revision, docker build, docker tag image with revision, docker login, docker push, docker logout)
+# @TODO: Read about `12 factor app`
+# @TODO: Play with logging drivers, json appender, stdout/stderr. Log4j
+# @TODO: ADD spring dependency: actuator and micrometer & play with postman, enable actuator endpoints
+# @TODO: Use spring profiles
+# @TODO: Vizualize application metrics. Docker-compose with Graphana and Prometheus
+# @TODO: Read about application security, code coverage, SonarQube Cloud integration
+# DRAFT@TODO: Bugs hunting!
+# DRAFT@TODO: Set heapsize for java
+# DRAFT@TODO: Add health check to Dockerfile
+# DRAFT@TODO: Convert datasource to PostgreSQL scheme
+# DRAFT@TODO: Import database scheme to PostgreSQL
+# DRAFT@TODO: Read about flyway or other database migration tools & add to application
+
+# References for improvements:
+# https://habr.com/ru/company/otus/blog/452624/ (actuator)
+# https://habr.com/ru/post/457476/ (Spring Boot custom runtime)
+# https://medium.com/hackernoon/crafting-perfect-java-docker-build-flow-740f71638d63 (maven image as a builder, ONBUILD,)
+# https://hackernoon.com/5-tips-for-creating-docker-images-with-spring-boot-3e2n3umk (cache & copy jar with wildcard pattern)
+# https://medium.com/codingfullstack/5-essential-docker-tips-for-your-spring-boot-images-8f570270d9ba (spring profiles & cache)
