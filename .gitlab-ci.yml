@@ -10,7 +10,7 @@ services:
 #  - docker info
 
 stages:
-  - build-and-push
+  - build
   - test
 
 #variables:
