@@ -21,7 +21,7 @@ build-job:
   stage: build
   script:
     - docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD $DOCKER_HUB_REGISTRY
-    - docker build -t coronavirus-tracker:cicd-pipeline -f Dockerfile
+    - docker build -t coronavirus-tracker:cicd-pipeline -f Dockerfile .
     - docker tag coronavirus-tracker:cicd-pipeline $DOCKER_HUB_USERNAME/coronavirus-tracker:latest-gitlab
 #    - docker build -t $DOCKER_HUB_USERNAME/coronavirus-tracker:latest-gitlab .
 #    - docker tag $DOCKER_HUB_USERNAME/coronavirus-tracker:latest-gitlab hshc/coronavirus-tracker:test
