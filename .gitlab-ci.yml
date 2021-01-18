@@ -10,9 +10,8 @@ services:
 #  - docker info
 
 stages:
-  - build
+  - build-and-push
   - test
-  - push
 
 #variables:
 #  IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
@@ -26,6 +25,8 @@ build-job:
 #    - docker build -t $DOCKER_HUB_USERNAME/coronavirus-tracker:latest-gitlab .
 #    - docker tag $DOCKER_HUB_USERNAME/coronavirus-tracker:latest-gitlab hshc/coronavirus-tracker:test
     - docker images
+    - docker push $DOCKER_HUB_USERNAME/coronavirus-tracker:latest-gitlab
+    - echo "This job pushes image into github repo"
 
 test-job1:
   stage: test
@@ -39,11 +40,3 @@ test-job1:
 #    - echo "After the echo commands complete, it runs the sleep command for 20 seconds"
 #    - echo "which simulates a test that runs 20 seconds longer than test-job1"
 #    - sleep 20
-
-push-image:
-  stage: push
-  script:
-    - docker images
-    - docker push $DOCKER_HUB_USERNAME/coronavirus-tracker:latest-gitlab
-#    - docker push <hub-user>/<repo-name>:<tag>
-    - echo "This job pushes image into github repo"
