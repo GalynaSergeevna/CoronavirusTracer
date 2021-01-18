@@ -21,7 +21,7 @@ build-job:
   stage: build
   script:
     - docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD $DOCKER_HUB_REGISTRY
-    - docker build -t coronavirus-tracker:latest-gitlab .
+    - docker build -t $DOCKER_HUB_USERNAME/coronavirus-tracker:latest-gitlab .
 
 test-job1:
   stage: test
@@ -39,5 +39,5 @@ test-job1:
 push-image:
   stage: push
   script:
-    - docker push coronavirus-tracker:latest-gitlab
+    - docker push $DOCKER_HUB_USERNAME/coronavirus-tracker:latest-gitlab
     - echo "This job pushes image into github repo"
