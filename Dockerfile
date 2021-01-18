@@ -40,7 +40,7 @@ COPY coronavirus-tracker/mvnw mvnw
 COPY coronavirus-tracker/.mvn .mvn
 COPY coronavirus-tracker/pom.xml pom.xml
 COPY coronavirus-tracker/src src
-RUN chmod 777 ./mvnw package
+RUN chmod 777 ./mvnw
 #RUN chmod +x ./mvnw package
 RUN ./mvnw package
 ARG JAR_FILE=/home/corona/coronavirus-tracker/target/*.jar
