@@ -3,6 +3,7 @@ image: docker:19.03.12
 
 services:
   - docker:19.03.12-dind
+#  - docker:dind
 
 #before_script:
 #  - pwd
@@ -18,25 +19,18 @@ stages:
 
 build-job:
   stage: build
-  script:
+  before_script:
     - docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD $DOCKER_HUB_REGISTRY
-    - docker build -t coronavirus-tracker:cicd-pipeline -f Dockerfile .
+  script:
+#    - docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD $DOCKER_HUB_REGISTRY
+    - docker build -t $DOCKER_HUB_REGISTRY_IMAGE:cicd-pipeline -f Dockerfile .
     - docker tag coronavirus-tracker:cicd-pipeline $DOCKER_HUB_USERNAME/coronavirus-tracker:latest-gitlab
 #    - docker build -t $DOCKER_HUB_USERNAME/coronavirus-tracker:latest-gitlab .
 #    - docker tag $DOCKER_HUB_USERNAME/coronavirus-tracker:latest-gitlab hshc/coronavirus-tracker:test
     - docker images
-    - docker push $DOCKER_HUB_USERNAME/coronavirus-tracker:latest-gitlab
-    - echo "This job pushes image into github repo"
+    - docker push $DOCKER_HUB_USERNAME/$DOCKER_HUB_REGISTRY_IMAGE:latest-gitlab
 
 test-job1:
   stage: test
   script:
     - echo "This job tests something"
-
-#test-job2:
-#  stage: test
-#  script:
-#    - echo "This job tests something, but takes more time than test-job1."
-#    - echo "After the echo commands complete, it runs the sleep command for 20 seconds"
-#    - echo "which simulates a test that runs 20 seconds longer than test-job1"
-#    - sleep 20
