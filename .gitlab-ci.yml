@@ -14,10 +14,12 @@ stages:
 
 build-job:
   stage: build
-  before_script:
+#  before_script:
+#    - docker logout $DOCKER_HUB_REGISTRY
+#    - docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD $DOCKER_HUB_REGISTRY
+  script:
     - docker logout $DOCKER_HUB_REGISTRY
     - docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD $DOCKER_HUB_REGISTRY
-  script:
     - docker build -t coronavirus-tracker:cicd-pipeline -f Dockerfile .
     - docker tag coronavirus-tracker:cicd-pipeline $DOCKER_HUB_USERNAME/coronavirus-tracker:latest-gitlab
     - docker images
