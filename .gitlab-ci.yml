@@ -21,10 +21,10 @@ build-job:
     - docker tag coronavirus-tracker:cicd-pipeline coronavirus-tracker:latest-gitlab
     - docker images
 #    - docker push $DOCKER_HUB_USERNAME/$DOCKER_HUB_REGISTRY_IMAGE:latest-gitlab
-     - docker push coronavirus-tracker:$CI_COMMIT_REF_SLUG
+    - docker push DOCKER_HUB_USERNAME/coronavirus-tracker:latest-gitlab
 
-  except:
-    - master
+#  except:
+#    - master
 
 test-job1:
   stage: test
