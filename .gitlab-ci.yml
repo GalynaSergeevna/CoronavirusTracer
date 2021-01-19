@@ -15,6 +15,7 @@ stages:
 build-job:
   stage: build
   before_script:
+    - docker logout $DOCKER_HUB_REGISTRY
     - docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD $DOCKER_HUB_REGISTRY
   script:
     - docker build -t coronavirus-tracker:cicd-pipeline -f Dockerfile .
@@ -27,8 +28,6 @@ build-job:
 #    - docker push $DOCKER_HUB_REGISTRY/$DOCKER_HUB_USERNAME/coronavirus-tracker:latest-gitlab
 #      - docker push index.docker.io/$REPOSITORY:latest
 #  - docker push $CI_REGISTRY/$CI_PROJECT_PATH/name:latest
-#  only:
-#    - master
 
 test-job1:
   stage: test
