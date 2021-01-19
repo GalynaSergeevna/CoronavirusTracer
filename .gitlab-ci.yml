@@ -5,11 +5,6 @@ services:
   - docker:19.03.12-dind
 #  - docker:dind
 
-#before_script:
-#  - pwd
-#  - ls -lapth
-#  - docker info
-
 stages:
   - build
   - test
@@ -22,8 +17,7 @@ build-job:
   before_script:
     - docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD $DOCKER_HUB_REGISTRY
   script:
-#    - docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD $DOCKER_HUB_REGISTRY
-    - docker build -t $DOCKER_HUB_REGISTRY_IMAGE:cicd-pipeline -f Dockerfile .
+    - docker build -t coronavirus-tracker:cicd-pipeline -f Dockerfile .
     - docker tag coronavirus-tracker:cicd-pipeline $DOCKER_HUB_USERNAME/coronavirus-tracker:latest-gitlab
 #    - docker build -t $DOCKER_HUB_USERNAME/coronavirus-tracker:latest-gitlab .
 #    - docker tag $DOCKER_HUB_USERNAME/coronavirus-tracker:latest-gitlab hshc/coronavirus-tracker:test
