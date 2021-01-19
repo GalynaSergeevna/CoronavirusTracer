@@ -20,14 +20,13 @@ build-job:
     - docker build -t coronavirus-tracker:cicd-pipeline -f Dockerfile .
     - docker tag coronavirus-tracker:cicd-pipeline coronavirus-tracker:latest-gitlab
     - docker images
+    - docker push $DOCKER_HUB_REGISTRY_IMAGE:latest-gitlab
 #    - docker push $DOCKER_HUB_USERNAME/$DOCKER_HUB_REGISTRY_IMAGE:latest-gitlab
-    - docker push $DOCKER_HUB_REGISTRY/$DOCKER_HUB_USERNAME/coronavirus-tracker:latest-gitlab
+#    - docker push $DOCKER_HUB_REGISTRY/$DOCKER_HUB_USERNAME/coronavirus-tracker:latest-gitlab
 #      - docker push index.docker.io/$REPOSITORY:latest
 #  - docker push $CI_REGISTRY/$CI_PROJECT_PATH/name:latest
-
-
-#  except:
-#    - master
+  only:
+    - master
 
 test-job1:
   stage: test
