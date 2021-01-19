@@ -22,7 +22,8 @@ build-job:
 #    - docker build -t $DOCKER_HUB_USERNAME/coronavirus-tracker:latest-gitlab .
 #    - docker tag $DOCKER_HUB_USERNAME/coronavirus-tracker:latest-gitlab hshc/coronavirus-tracker:test
     - docker images
-    - docker push $DOCKER_HUB_USERNAME/$DOCKER_HUB_REGISTRY_IMAGE:latest-gitlab
+#    - docker push $DOCKER_HUB_USERNAME/$DOCKER_HUB_REGISTRY_IMAGE:latest-gitlab
+     - docker push "$DOCKER_HUB_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
 
 test-job1:
   stage: test
